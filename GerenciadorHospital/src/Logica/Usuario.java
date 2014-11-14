@@ -1,16 +1,20 @@
 package Logica;
 
 public abstract class Usuario {
-	protected String usuario;
-	protected String senha; 
 	protected String nome;
-	protected int identificador;
+	protected String senha; 
+	protected long identificador;
 	
-	public Usuario(String usuario, String senha, String nome, int identificador){
-		this.usuario = usuario;
-		this.senha = senha;
+	public Usuario(String nome, String senha, long identificador){
 		this.nome = nome;
+		this.senha = senha;
 		this.identificador = identificador;
+	}
+	
+	abstract public void menu(Dados banco);
+
+	public String getNome() {
+		return nome;
 	}
 	
 }

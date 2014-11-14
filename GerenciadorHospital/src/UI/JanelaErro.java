@@ -15,7 +15,7 @@ public class JanelaErro {
 	JFrame janela;
 	JLabel mensagem;
 	
-	public void erro(String mensagemErro){
+	public JanelaErro(String mensagemErro){
 		
 		botaoOk = new JButton("OK");
 		painel = new JPanel();

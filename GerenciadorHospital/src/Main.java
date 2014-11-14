@@ -1,16 +1,14 @@
-import UI.JanelaErro;
+import Logica.Dados;
 import UI.JanelaLogin;
+import UI.SelecionarUsuario;
 
 
 public class Main {
 
 	public static void main(String[] args) {
-		JanelaLogin login = new JanelaLogin();
-		login.login();
-		
-		JanelaErro erro = new JanelaErro();
-		erro.erro("erro");
-
+		Dados bancoDados  = new Dados();
+		new JanelaLogin(bancoDados);
+		new SelecionarUsuario(bancoDados);
 	}
 
 }

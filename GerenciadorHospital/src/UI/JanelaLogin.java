@@ -12,33 +12,41 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Logica.Dados;
+
 public class JanelaLogin {
 	
-	private JButton botaoEntrar, botaoSair, botaoUsuario;
-	private JPanel painel, botoes, painelUsuario, painelSenha;
 	private JFrame janela;
+	private JPanel painel, botoes, painelUsuario, painelSenha;
+	private JButton botaoEntrar, botaoUsuario, botaoSair;
 	private JLabel usuario, senha;
 	private JTextField entradaUsuario;
 	private JPasswordField entradaSenha;
 	
-	private void prepararBotoes(){
+	private void prepararBotoes(Dados banco){
 		botaoEntrar = new JButton("Entrar");
-		botaoUsuario = new JButton("Novo Usuario");
+		botaoUsuario = new JButton("Novo Paciente");
 		botaoSair = new JButton("Sair");
 		botoes = new JPanel();
 		
 		botaoEntrar.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				    ; }});
+				    if(banco.usuarioExiste(entradaUsuario.getText())){
+				    	
+				    }else{
+				    	new JanelaErro("Usuario não encontrado");
+				    }
+				    	
+			  }});
 		
 		botaoUsuario.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				    ; }});
+				    new JanelaCriarUsuario(new JanelaPaciente()).desenharJanela(banco); }});
 		
 		botaoSair.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				    janela.dispose(); }});
+				    System.exit(0); }});
 		
 		botoes.setLayout(new FlowLayout());
 		botoes.add(botaoEntrar);
@@ -52,7 +60,7 @@ public class JanelaLogin {
 		painelUsuario = new JPanel();
 		painelUsuario.setLayout(new FlowLayout());
 		
-		usuario = new JLabel("Usuario: ");
+		usuario = new JLabel("Nome: ");
 		entradaUsuario = new JTextField(20);
 		entradaUsuario.setEditable(true);
 		
@@ -78,13 +86,13 @@ public class JanelaLogin {
 		painel.add(painelSenha);
 	}
 	
-	public void login(){
+	public JanelaLogin(Dados banco){
 		painel = new JPanel();
 		painel.setLayout(new BoxLayout(painel, BoxLayout.Y_AXIS));
 		
 		prepararPainelUsuario();
 		prepararPainelSenha();
-		prepararBotoes();
+		prepararBotoes(banco);
 		
 		janela = new JFrame("Login");
 		janela.add(painel);

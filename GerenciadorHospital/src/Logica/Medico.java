@@ -1,6 +1,7 @@
 package Logica;
 
-public class Medico extends Usuario{
+public abstract class Medico extends Usuario{
+	
 	protected String especialidade;
 	
 	public Medico(String nome, String senha, long identificador, String especialidade) {
@@ -13,5 +14,10 @@ public class Medico extends Usuario{
 		System.out.println("login");
 		
 	}
+	
+	public String getEspecialidade() {
+		return especialidade;
+	}
+	
 
 }

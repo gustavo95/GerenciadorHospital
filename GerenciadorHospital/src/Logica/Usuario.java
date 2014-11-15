@@ -1,6 +1,7 @@
 package Logica;
 
 public abstract class Usuario {
+	
 	protected String nome;
 	protected String senha; 
 	protected long identificador;
@@ -10,6 +11,8 @@ public abstract class Usuario {
 		this.senha = senha;
 		this.identificador = identificador;
 	}
+	
+	abstract public void setProxy(String usuario, String senha);
 	
 	abstract public void menu(Dados banco);
 

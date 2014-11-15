@@ -13,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Logica.Dados;
+import Logica.Usuario;
 
 public class JanelaLogin {
 	
@@ -30,8 +31,13 @@ public class JanelaLogin {
 		botoes = new JPanel();
 		
 		botaoEntrar.addActionListener(new ActionListener() {
-			  public void actionPerformed(ActionEvent e) {
+			  @SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
 				    if(banco.usuarioExiste(entradaUsuario.getText())){
+				    	janela.dispose();
+				    	Usuario u = banco.getUsuario(entradaUsuario.getText());
+				    	u.setProxy(entradaUsuario.getText(), entradaSenha.getText());
+				    	u.menu(banco);
 				    	
 				    }else{
 				    	new JanelaErro("Usuario não encontrado");

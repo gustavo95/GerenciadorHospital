@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Logica.Dados;
-import Logica.Usuario;
+import Gerenciador.Dados;
+import Gerenciador.Usuario;
 
 public class JanelaLogin {
 	
@@ -104,6 +104,7 @@ public class JanelaLogin {
 		janela.add(painel);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.pack();
+		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 	}
 

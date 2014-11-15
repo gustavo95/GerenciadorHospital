@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import Logica.Dados;
+import Gerenciador.Dados;
 
 public class SelecionarUsuario {
 	
@@ -93,6 +93,7 @@ public class SelecionarUsuario {
 		
 		janela.add(painel);
 		janela.pack();
+		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 	}
 	

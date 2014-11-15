@@ -1,4 +1,4 @@
-import Logica.Dados;
+import Gerenciador.Dados;
 import UI.JanelaLogin;
 import UI.SelecionarUsuario;
 

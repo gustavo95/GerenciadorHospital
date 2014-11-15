@@ -1,8 +1,9 @@
-package Logica;
+package Gerenciador;
 
 import UI.JanelaErro;
 import UI.JanelaLogin;
 
+//Padrao Proxy
 public class AdministradorProxy extends Administrador{
 
 	private String usuarioProxy, senhaProxy;

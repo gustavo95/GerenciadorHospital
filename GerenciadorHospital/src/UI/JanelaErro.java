@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,14 +13,14 @@ import javax.swing.JPanel;
 public class JanelaErro {
 	JButton botaoOk;
 	JPanel painel;
-	JFrame janela;
+	JDialog janela;
 	JLabel mensagem;
 	
 	public JanelaErro(String mensagemErro){
-		
-		botaoOk = new JButton("OK");
+		janela = new JDialog();
+		janela.setName("Erro");
 		painel = new JPanel();
-		janela = new JFrame("Erro");
+		botaoOk = new JButton("OK");
 		mensagem = new JLabel(mensagemErro);
 		
 		botaoOk.addActionListener(new ActionListener() {
@@ -32,8 +33,10 @@ public class JanelaErro {
 		painel.add(mensagem, BorderLayout.CENTER);
 		painel.add(botaoOk, BorderLayout.SOUTH);
 		janela.add(painel);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		janela.pack();
+		janela.setModal(true);
+		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 	}
 	

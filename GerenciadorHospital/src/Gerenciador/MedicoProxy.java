@@ -1,14 +1,15 @@
-package Logica;
+package Gerenciador;
 
 import UI.JanelaErro;
 import UI.JanelaLogin;
 
-public class PacienteProxy extends Paciente{
+//Padrao Proxy
+public class MedicoProxy extends Medico{
 	
 	private String usuarioProxy, senhaProxy;
 	
-	public PacienteProxy(String nome, String senha, long identificador, int idade) {
-		super(nome, senha, identificador, idade);
+	public MedicoProxy(String nome, String senha, long identificador, String especialidade) {
+		super(nome, senha, identificador, especialidade);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -29,7 +30,6 @@ public class PacienteProxy extends Paciente{
 			new JanelaLogin(banco);
 			new JanelaErro("Usuario ou Senha incorretos");
 		}
-		
 	}
 
 }

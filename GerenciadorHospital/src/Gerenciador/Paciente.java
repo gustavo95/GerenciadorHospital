@@ -1,4 +1,7 @@
-package Logica;
+package Gerenciador;
+
+import UI.JanelaPaciente;
+import UI.JanelaPrincipal;
 
 public abstract class Paciente extends Usuario {
 	
@@ -11,8 +14,7 @@ public abstract class Paciente extends Usuario {
 
 	@Override
 	public void menu(Dados banco) {
-		System.out.println("login");
-		
+		new JanelaPrincipal(new JanelaPaciente()).desenharJanela(banco);
 	}
 	
 	public int getIdade(){

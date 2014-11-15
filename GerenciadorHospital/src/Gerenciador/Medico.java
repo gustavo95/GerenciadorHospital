@@ -1,4 +1,7 @@
-package Logica;
+package Gerenciador;
+
+import UI.JanelaMedico;
+import UI.JanelaPrincipal;
 
 public abstract class Medico extends Usuario{
 	
@@ -11,8 +14,7 @@ public abstract class Medico extends Usuario{
 
 	@Override
 	public void menu(Dados banco) {
-		System.out.println("login");
-		
+		new JanelaPrincipal(new JanelaMedico()).desenharJanela(banco);
 	}
 	
 	public String getEspecialidade() {

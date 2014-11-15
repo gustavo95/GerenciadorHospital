@@ -1,4 +1,4 @@
-package Logica;
+package Gerenciador;
 
 public class Consulta {
 	private Paciente paciente;

@@ -1,6 +1,6 @@
 package UI;
 
-import Logica.Dados;
+import Gerenciador.Dados;
 
 //Padrao Bridge
 public abstract class JanelaAbstrata {
@@ -26,5 +26,17 @@ public abstract class JanelaAbstrata {
 	
 	public void prepararBotoesCriarUsuario(Dados usuarios){
 		janela.prepararBotoesCriarUsuario(usuarios);
+	}
+	
+	public void prepararTabela(Dados usuario){
+		janela.preparaTabela(usuario);
+	}
+	
+	public void prepararAtualizarTabela(Dados usuarios){
+		janela.prepararAtualizarTabela(usuarios);
+	}
+	
+	public void prepararBotoesPrincipal(Dados usuarios){
+		janela.prepararBotoesPrincipal(usuarios);
 	}
 }

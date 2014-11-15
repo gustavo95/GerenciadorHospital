@@ -1,4 +1,7 @@
-package Logica;
+package Gerenciador;
+
+import UI.JanelaAdministrador;
+import UI.JanelaPrincipal;
 
 public abstract class Administrador extends Usuario{
 
@@ -9,7 +12,7 @@ public abstract class Administrador extends Usuario{
 	
 	@Override
 	public void menu(Dados banco) {
-		System.out.println("login");
+		new JanelaPrincipal(new JanelaAdministrador()).desenharJanela(banco);
 	}
 	
 }

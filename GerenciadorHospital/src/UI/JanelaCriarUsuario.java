@@ -1,6 +1,6 @@
 package UI;
 
-import Logica.Dados;
+import Gerenciador.Dados;
 
 //Padrao Bridge
 public class JanelaCriarUsuario extends JanelaAbstrata{

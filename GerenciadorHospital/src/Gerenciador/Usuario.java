@@ -1,4 +1,4 @@
-package Logica;
+package Gerenciador;
 
 public abstract class Usuario {
 	

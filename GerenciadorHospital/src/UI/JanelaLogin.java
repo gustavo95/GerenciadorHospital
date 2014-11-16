@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Bridge.JanelaCriarUsuario;
+import Bridge.JanelaPaciente;
 import Gerenciador.Dados;
 import Gerenciador.Usuario;
 
@@ -47,7 +49,7 @@ public class JanelaLogin {
 		
 		botaoUsuario.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
-				    new JanelaCriarUsuario(new JanelaPaciente()).desenharJanela(banco); }});
+				    new JanelaCriarUsuario(new JanelaPaciente()).desenharJanela(banco, null); }});
 		
 		botaoSair.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {

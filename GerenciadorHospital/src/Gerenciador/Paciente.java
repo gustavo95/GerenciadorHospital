@@ -1,7 +1,7 @@
 package Gerenciador;
 
-import UI.JanelaPaciente;
-import UI.JanelaPrincipal;
+import Bridge.JanelaPaciente;
+import Bridge.JanelaPrincipal;
 
 public abstract class Paciente extends Usuario {
 	
@@ -14,7 +14,7 @@ public abstract class Paciente extends Usuario {
 
 	@Override
 	public void menu(Dados banco) {
-		new JanelaPrincipal(new JanelaPaciente()).desenharJanela(banco);
+		new JanelaPrincipal(new JanelaPaciente()).desenharJanela(banco, super.nome);
 	}
 	
 	public int getIdade(){

@@ -1,4 +1,4 @@
-package UI;
+package Bridge;
 
 import Gerenciador.Dados;
 
@@ -10,7 +10,7 @@ public class JanelaCriarUsuario extends JanelaAbstrata{
 	}
 
 	@Override
-	public void desenharJanela(Dados usuarios) {
+	public void desenharJanela(Dados usuarios, String nome) {
 		prepararJanela("Criar Usuario");
 		prepararEntradas();
 		prepararBotoesCriarUsuario(usuarios);

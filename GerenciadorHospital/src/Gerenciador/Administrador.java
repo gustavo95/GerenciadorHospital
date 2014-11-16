@@ -1,7 +1,7 @@
 package Gerenciador;
 
-import UI.JanelaAdministrador;
-import UI.JanelaPrincipal;
+import Bridge.JanelaAdministrador;
+import Bridge.JanelaPrincipal;
 
 public abstract class Administrador extends Usuario{
 
@@ -12,7 +12,7 @@ public abstract class Administrador extends Usuario{
 	
 	@Override
 	public void menu(Dados banco) {
-		new JanelaPrincipal(new JanelaAdministrador()).desenharJanela(banco);
+		new JanelaPrincipal(new JanelaAdministrador()).desenharJanela(banco, null);
 	}
 	
 }

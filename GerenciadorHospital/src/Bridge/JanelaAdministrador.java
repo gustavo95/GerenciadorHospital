@@ -1,4 +1,4 @@
-package UI;
+package Bridge;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,6 +23,11 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import UI.JanelaConsulta;
+import UI.JanelaErro;
+import UI.JanelaExcluir;
+import UI.JanelaLogin;
+import UI.SelecionarUsuario;
 import Gerenciador.AdministradorProxy;
 import Gerenciador.Dados;
 
@@ -56,7 +61,7 @@ public class JanelaAdministrador implements JanelaInterface{
 		painel  = new JPanel();
 		painel.setLayout(new BoxLayout(painel, BoxLayout.Y_AXIS));
 
-		label = new JLabel("label: ");
+		label = new JLabel("Nome: ");
 		senha = new JLabel("Senha: ");
 		cpf = new JLabel("CPF: ");
 
@@ -184,7 +189,7 @@ public class JanelaAdministrador implements JanelaInterface{
 	}
 	
 	@Override
-	public void prepararBotoesPrincipal(Dados usuarios){
+	public void prepararBotoesPrincipal(Dados usuarios, String nome){
 		
 		painelBotoes = new JPanel();
 		painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.Y_AXIS));
@@ -218,7 +223,7 @@ public class JanelaAdministrador implements JanelaInterface{
 		botao5.setMaximumSize(new Dimension(170, 50));
 		botao5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new JanelaConsulta().desmarcarConsulta(usuarios, null, null);
 			}});
 		
 		botao6 = new JButton("Sair");

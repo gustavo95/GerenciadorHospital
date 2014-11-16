@@ -1,4 +1,4 @@
-package UI;
+package Bridge;
 
 import Gerenciador.Dados;
 
@@ -10,7 +10,7 @@ public abstract class JanelaAbstrata {
         this.janela = janela;
     }
 	
-	abstract public void desenharJanela(Dados usuarios);
+	abstract public void desenharJanela(Dados usuarios, String nome);
 	
 	public void prepararJanela(String nomeJanela){
 		janela.prepararJanela(nomeJanela);
@@ -36,7 +36,8 @@ public abstract class JanelaAbstrata {
 		janela.prepararAtualizarTabela(usuarios);
 	}
 	
-	public void prepararBotoesPrincipal(Dados usuarios){
-		janela.prepararBotoesPrincipal(usuarios);
+	public void prepararBotoesPrincipal(Dados usuarios,String nome){
+		janela.prepararBotoesPrincipal(usuarios, nome);
 	}
+	
 }

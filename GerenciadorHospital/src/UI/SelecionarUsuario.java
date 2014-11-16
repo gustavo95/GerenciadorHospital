@@ -11,6 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import Bridge.JanelaAbstrata;
+import Bridge.JanelaAdministrador;
+import Bridge.JanelaCriarUsuario;
+import Bridge.JanelaMedico;
+import Bridge.JanelaPaciente;
 import Gerenciador.Dados;
 
 public class SelecionarUsuario {
@@ -41,7 +46,7 @@ public class SelecionarUsuario {
 				  }
 				  
 				  janela.dispose();
-				  criarUsuario.desenharJanela(usuarios);
+				  criarUsuario.desenharJanela(usuarios, null);
 				  }});
 		
 		cancelar.addActionListener(new ActionListener() {

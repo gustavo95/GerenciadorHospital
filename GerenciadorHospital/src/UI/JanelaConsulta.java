@@ -49,6 +49,25 @@ public class JanelaConsulta{
 		janela.setVisible(true);
 	}
 	
+	public void desmarcarConsulta(Dados usuarios, String nomePaciente, String nomeMedico){
+		janela = new JFrame("Desmarcar Consulta");
+		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		painel = new JPanel();
+		painel.setLayout(new BoxLayout(painel, BoxLayout.Y_AXIS));
+		
+		prepararEntradaPaciente(nomePaciente);
+		prepararEntradaMedico(nomeMedico);
+		prepararEntradaData();
+		prepararBotaoDesmarcar(usuarios);
+		prepararBotaoCancelar();
+		
+		janela.add(painel);
+		janela.pack();
+		janela.setLocationRelativeTo(null);
+		janela.setVisible(true);
+	}
+	
 	private void prepararEntradaPaciente(String nomePaciente){
 		paciente = new JLabel("Nome do Paciente");
 		
@@ -133,6 +152,43 @@ public class JanelaConsulta{
 							cal.setTime(df.parse(entradaData.getText()));
 							
 							usuarios.marcarConsulta(cal, new Consulta((Paciente)p, (Medico)m));
+							janela.dispose();
+							
+						} catch (ParseException e1) {
+							new JanelaErro("Formato de data invalido");
+						} 
+					}else{
+						new JanelaErro("Tipos de usuario incoreos");
+					}
+				}else{
+					new JanelaErro("Usuario não encontrado");
+				}
+			}});
+		
+		painelBotoes.add(ok);
+	}
+	
+	private void prepararBotaoDesmarcar(Dados usuarios){
+		painelBotoes = new JPanel();
+		painelBotoes.setLayout(new FlowLayout());
+		
+		ok = new JButton("Desmarcar");
+		
+		ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(usuarios.usuarioExiste(entradaPaciente.getText()) && usuarios.usuarioExiste(entradaMedico.getText())){
+					
+					Usuario p = usuarios.getUsuario(entradaPaciente.getText());
+					Usuario m = usuarios.getUsuario(entradaMedico.getText());
+					
+					if(p instanceof PacienteProxy && m instanceof MedicoProxy){
+						try {
+							SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+							Calendar cal  = Calendar.getInstance();
+							cal.setTime(df.parse(entradaData.getText()));
+							
+							usuarios.desmarcarConsulta(cal, new Consulta((Paciente)p, (Medico)m));
+							janela.dispose();
 							
 						} catch (ParseException e1) {
 							new JanelaErro("Formato de data invalido");

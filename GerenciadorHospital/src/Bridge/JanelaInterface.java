@@ -1,4 +1,4 @@
-package UI;
+package Bridge;
 
 import Gerenciador.Dados;
 
@@ -11,5 +11,5 @@ public interface JanelaInterface {
 	public void prepararBotoesCriarUsuario(Dados usuarios);
 	public void preparaTabela(Dados usuarios);
 	public void prepararAtualizarTabela(Dados usuarios);
-	public void prepararBotoesPrincipal(Dados usuarios);
+	public void prepararBotoesPrincipal(Dados usuarios, String nome);
 }

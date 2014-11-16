@@ -28,12 +28,12 @@ public abstract class JanelaAbstrata {
 		janela.prepararBotoesCriarUsuario(usuarios);
 	}
 	
-	public void prepararTabela(Dados usuario){
-		janela.preparaTabela(usuario);
+	public void prepararTabela(Dados usuario, String nome){
+		janela.preparaTabela(usuario, nome);
 	}
 	
-	public void prepararAtualizarTabela(Dados usuarios){
-		janela.prepararAtualizarTabela(usuarios);
+	public void prepararAtualizarTabela(Dados usuarios, String nome){
+		janela.prepararAtualizarTabela(usuarios, nome);
 	}
 	
 	public void prepararBotoesPrincipal(Dados usuarios,String nome){

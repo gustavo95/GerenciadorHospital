@@ -127,7 +127,7 @@ public class JanelaAdministrador implements JanelaInterface{
 	}
 
 	@Override
-	public void preparaTabela(Dados usuarios){
+	public void preparaTabela(Dados usuarios, String nome){
 
 		painel = new JPanel();
 		painel.setLayout(new BorderLayout());
@@ -153,7 +153,7 @@ public class JanelaAdministrador implements JanelaInterface{
 	}
 
 	@Override
-	public void prepararAtualizarTabela(Dados usuarios){
+	public void prepararAtualizarTabela(Dados usuarios, String nome){
 
 		painelAux1 = new JPanel();
 		painelAux1.setLayout(new FlowLayout());

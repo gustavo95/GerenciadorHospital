@@ -3,7 +3,6 @@ package Gerenciador;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Hashtable;
-
 import UI.JanelaErro;
 
 public class Dados {
@@ -68,4 +67,19 @@ public class Dados {
 			return new TabelaConsultas(new ArrayList<Consulta>());
 		}
 	}
+	
+	public TabelaConsultas getConsultasFiltro(Calendar data, String nome){
+		if(consultas.containsKey(data)){
+			ArrayList<Consulta> filtrada = new ArrayList<Consulta>();
+			for(Consulta c : consultas.get(data)){
+				if(c.getPacienteNome().equals(nome) || c.getMedicoNome().equals(nome)){
+					filtrada.add(c);
+				}
+			}
+			return new TabelaConsultas(filtrada);
+		}else{
+			return new TabelaConsultas(new ArrayList<Consulta>());
+		}
+	}
+	
 }

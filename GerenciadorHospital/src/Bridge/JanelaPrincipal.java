@@ -12,8 +12,8 @@ public class JanelaPrincipal extends JanelaAbstrata{
 	@Override
 	public void desenharJanela(Dados usuarios, String nome) {
 		prepararJanela("Gerenciador");
-		prepararTabela(usuarios);
-		prepararAtualizarTabela(usuarios);
+		prepararTabela(usuarios, nome);
+		prepararAtualizarTabela(usuarios, nome);
 		prepararBotoesPrincipal(usuarios, nome);
 		mostrarJanela();
 		

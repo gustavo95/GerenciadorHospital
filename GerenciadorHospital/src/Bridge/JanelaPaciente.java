@@ -2,6 +2,7 @@ package Bridge;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -131,7 +132,7 @@ public class JanelaPaciente implements JanelaInterface{
 	}
 	
 	@Override
-	public void preparaTabela(Dados usuarios){
+	public void preparaTabela(Dados usuarios, String nomePaciente){
 
 		painel = new JPanel();
 		painel.setLayout(new BorderLayout());
@@ -151,13 +152,13 @@ public class JanelaPaciente implements JanelaInterface{
 		Calendar cal = new GregorianCalendar();
 		cal.setTime(hoje);
 
-		tabela.setModel(usuarios.getConsultas(cal));
+		tabela.setModel(usuarios.getConsultasFiltro(cal, nomePaciente));
 
 		painel.add(scroll, BorderLayout.CENTER);
 	}
 
 	@Override
-	public void prepararAtualizarTabela(Dados usuarios){
+	public void prepararAtualizarTabela(Dados usuarios, String nomePaciente){
 
 		painelAux1 = new JPanel();
 		painelAux1.setLayout(new FlowLayout());
@@ -179,7 +180,7 @@ public class JanelaPaciente implements JanelaInterface{
 					SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 					Calendar cal  = Calendar.getInstance();
 					cal.setTime(df.parse(entrada.getText()));
-					tabela.setModel(usuarios.getConsultas(cal));
+					tabela.setModel(usuarios.getConsultasFiltro(cal, nomePaciente));
 				} catch (ParseException e1) {
 					new JanelaErro("Formato de data invalido");
 				}   
@@ -199,18 +200,24 @@ public class JanelaPaciente implements JanelaInterface{
 		painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.Y_AXIS));
 		
 		botao2 = new JButton("Marcar consulta");
+		botao2.setMinimumSize(new Dimension(170, 50));
+		botao2.setMaximumSize(new Dimension(170, 50));
 		botao2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new JanelaConsulta().marcarConsulta(usuarios, nomePaciente, null);
 			}});
 		
 		botao3 = new JButton("Desmarcar Consulta");
+		botao3.setMinimumSize(new Dimension(170, 50));
+		botao3.setMaximumSize(new Dimension(170, 50));
 		botao3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new JanelaConsulta().desmarcarConsulta(usuarios, null, null);
 			}});
 		
 		botao4 = new JButton("Sair");
+		botao4.setMinimumSize(new Dimension(170, 50));
+		botao4.setMaximumSize(new Dimension(170, 50));
 		botao4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				janela.dispose();

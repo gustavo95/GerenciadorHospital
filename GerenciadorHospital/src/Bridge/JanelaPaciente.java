@@ -149,8 +149,14 @@ public class JanelaPaciente implements JanelaInterface{
 		scroll.setSize(500, 500);
 
 		Date hoje = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String dataHoje = df.format(hoje);
 		Calendar cal = new GregorianCalendar();
-		cal.setTime(hoje);
+		try {
+			cal.setTime(df.parse(dataHoje));
+		} catch (ParseException e) {
+			new JanelaErro("Formato invalido");
+		}
 
 		tabela.setModel(usuarios.getConsultasFiltro(cal, nomePaciente));
 

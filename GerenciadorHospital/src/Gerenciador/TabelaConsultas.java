@@ -6,6 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class TabelaConsultas extends AbstractTableModel{
 
+	private static final long serialVersionUID = 1L;
 	private final List<Consulta> consultas;
 
 	public TabelaConsultas(List<Consulta> consultas){

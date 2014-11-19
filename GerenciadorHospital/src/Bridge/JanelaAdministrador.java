@@ -39,7 +39,7 @@ public class JanelaAdministrador implements JanelaInterface{
 	private JLabel label, senha, cpf;
 	private JTextField entrada, entradaCpf;
 	private JPasswordField entradaSenha;
-	private JButton botao1, botao2, botao3, botao4, botao5, botao6;
+	private JButton botao1, botao2, botao3, botao4, botao5, botao6, botaoUndo;
 	private JTable tabela;
 
 	@Override
@@ -144,12 +144,19 @@ public class JanelaAdministrador implements JanelaInterface{
 		scroll.setSize(500, 500);
 
 		Date hoje = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String dataHoje = df.format(hoje);
 		Calendar cal = new GregorianCalendar();
-		cal.setTime(hoje);
+		try {
+			cal.setTime(df.parse(dataHoje));
+		} catch (ParseException e) {
+			new JanelaErro("Formato invalido");
+		}
 
 		tabela.setModel(usuarios.getConsultas(cal));
 
 		painel.add(scroll, BorderLayout.CENTER);
+		
 	}
 
 	@Override
@@ -226,6 +233,14 @@ public class JanelaAdministrador implements JanelaInterface{
 				new JanelaConsulta().desmarcarConsulta(usuarios, null, null);
 			}});
 		
+		botaoUndo = new JButton("Undo");
+		botaoUndo.setMinimumSize(new Dimension(170, 50));
+		botaoUndo.setMaximumSize(new Dimension(170, 50));
+		botaoUndo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				usuarios.undo();
+			}});
+		
 		botao6 = new JButton("Sair");
 		botao6.setMinimumSize(new Dimension(170, 50));
 		botao6.setMaximumSize(new Dimension(170, 50));
@@ -239,6 +254,7 @@ public class JanelaAdministrador implements JanelaInterface{
 		painelBotoes.add(botao3);
 		painelBotoes.add(botao4);
 		painelBotoes.add(botao5);
+		painelBotoes.add(botaoUndo);
 		painelBotoes.add(botao6);
 		
 		janela.add(painelBotoes, BorderLayout.WEST);

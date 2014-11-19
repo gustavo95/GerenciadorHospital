@@ -7,12 +7,15 @@ import UI.JanelaErro;
 
 public class Dados {
 	private Hashtable<String, Usuario> usuarios;
-	private Hashtable<Calendar, ArrayList<Consulta>> consultas; 
+	private Hashtable<Calendar, ArrayList<Consulta>> consultas;
+	DadosCareTaker careTaker;
 	
 	public Dados(){
 		usuarios = new Hashtable<String, Usuario>();
 		usuarios.put("admin", new AdministradorProxy("admin", "admin00", 0000));
 		consultas = new Hashtable<Calendar, ArrayList<Consulta>>();
+		careTaker = new DadosCareTaker();
+		careTaker.adicionarMemento(new DadosMemento(usuarios, consultas));
 	}
 	
 	public boolean usuarioExiste(String nome){
@@ -20,6 +23,7 @@ public class Dados {
 	}
 	
 	public void addUsuario(String nome, Usuario novoUsuario){
+		careTaker.adicionarMemento(new DadosMemento(usuarios, consultas));
 		usuarios.put(nome, novoUsuario);
 	}
 	
@@ -28,10 +32,12 @@ public class Dados {
 	}
 	
 	public void removerUsuario(String nome){
+		careTaker.adicionarMemento(new DadosMemento(usuarios, consultas));
 		usuarios.remove(nome);
 	}
 	
 	public void marcarConsulta(Calendar data, Consulta c){
+		careTaker.adicionarMemento(new DadosMemento(usuarios, consultas));
 		if(consultas.containsKey(data)){
 			consultas.get(data).add(c);
 		}else{
@@ -43,6 +49,7 @@ public class Dados {
 	
 	public void desmarcarConsulta(Calendar data, Consulta c){
 		if(consultas.containsKey(data)){
+			careTaker.adicionarMemento(new DadosMemento(usuarios, consultas));
 			Boolean b = true;
 			for(Consulta consulta : consultas.get(data)){
 				if(consulta.getPacienteNome().equals(c.getPacienteNome()) && 
@@ -80,6 +87,12 @@ public class Dados {
 		}else{
 			return new TabelaConsultas(new ArrayList<Consulta>());
 		}
+	}
+	
+	public void undo(){
+		DadosMemento recuperar = careTaker.getUltimoEstado();
+		usuarios = recuperar.getUsuariosSalvos();
+		consultas = recuperar.getConsultasSalvas();
 	}
 	
 }

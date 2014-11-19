@@ -33,7 +33,7 @@ public class JanelaExcluir {
 		painelEntrada.setLayout(new FlowLayout());
 		
 		nome = new JLabel("Nome: ");
-		entradaNome = new JTextField();
+		entradaNome = new JTextField(25);
 		entradaNome.setEditable(true);
 		
 		painelEntrada.add(nome);

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Set;
 
+//Padrao Memento
 public class DadosMemento {
 
 	protected Hashtable<String, Usuario> usuarios;

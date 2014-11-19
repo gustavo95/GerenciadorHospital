@@ -218,7 +218,7 @@ public class JanelaPaciente implements JanelaInterface{
 		botao3.setMaximumSize(new Dimension(170, 50));
 		botao3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new JanelaConsulta().desmarcarConsulta(usuarios, null, null);
+				new JanelaConsulta().desmarcarConsulta(usuarios, nomePaciente, null);
 			}});
 		
 		botao4 = new JButton("Sair");

@@ -214,7 +214,7 @@ public class JanelaMedico implements JanelaInterface{
 		botao2.setMaximumSize(new Dimension(170, 50));
 		botao2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new JanelaConsulta().desmarcarConsulta(usuarios, null, null);
+				new JanelaConsulta().desmarcarConsulta(usuarios, null, nomeMedico);
 			}});
 		
 		botao3 = new JButton("Marcar consulta");

@@ -11,11 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import Bridge.JanelaAbstrata;
-import Bridge.JanelaAdministrador;
-import Bridge.JanelaCriarUsuario;
-import Bridge.JanelaMedico;
-import Bridge.JanelaPaciente;
+import UI.Bridge.JanelaAbstrata;
+import UI.Bridge.JanelaAdministrador;
+import UI.Bridge.JanelaCriarUsuario;
+import UI.Bridge.JanelaMedico;
+import UI.Bridge.JanelaPaciente;
 import Gerenciador.Dados;
 
 public class SelecionarUsuario {

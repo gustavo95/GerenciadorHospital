@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Bridge.JanelaCriarUsuario;
-import Bridge.JanelaPaciente;
+import UI.Bridge.JanelaCriarUsuario;
+import UI.Bridge.JanelaPaciente;
 import Gerenciador.Dados;
 import Gerenciador.Usuario;
 

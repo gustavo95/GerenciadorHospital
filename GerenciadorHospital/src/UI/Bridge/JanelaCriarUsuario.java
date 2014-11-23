@@ -1,4 +1,4 @@
-package Bridge;
+package UI.Bridge;
 
 import Gerenciador.Dados;
 

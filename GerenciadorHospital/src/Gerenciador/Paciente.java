@@ -1,7 +1,7 @@
 package Gerenciador;
 
-import Bridge.JanelaPaciente;
-import Bridge.JanelaPrincipal;
+import UI.Bridge.JanelaPaciente;
+import UI.Bridge.JanelaPrincipal;
 
 public abstract class Paciente extends Usuario {
 	

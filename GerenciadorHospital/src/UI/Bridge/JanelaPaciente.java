@@ -1,4 +1,4 @@
-package Bridge;
+package UI.Bridge;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,25 +27,25 @@ import UI.JanelaConsulta;
 import UI.JanelaErro;
 import UI.JanelaLogin;
 import Gerenciador.Dados;
-import Gerenciador.MedicoProxy;
+import Gerenciador.PacienteProxy;
 
 //Padrao Bridge
-public class JanelaMedico implements JanelaInterface{
-
+public class JanelaPaciente implements JanelaInterface{
+	
 	private JFrame janela;
-	private JPanel painel, painelAux1, painelAux2, painelAux3, painelAux4 ,painelBotoes;
-	private JLabel label, senha, crm, especialidade;
-	private JTextField entrada, entradaCrm, entradaEspecialidade;
+	private JPanel painel, painelAux1, painelAux2, painelAux3, painelBotoes;
+	private JLabel label, senha, cpf, idade;
+	private JTextField entrada, entradaCpf, entradaIdade;
 	private JPasswordField entradaSenha;
 	private JButton botao1, botao2, botao3, botao4;
 	private JTable tabela;
-
+	
 	@Override
 	public void prepararJanela(String labelJanela){
 		janela = new JFrame(labelJanela);
 		janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
-
+	
 	@Override
 	public void mostrarJanela(){
 		janela.add(painel);
@@ -53,90 +53,86 @@ public class JanelaMedico implements JanelaInterface{
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 	}
-
+	
 	@Override
 	public void prepararEntradas() {
 		painel  = new JPanel();
 		painel.setLayout(new BoxLayout(painel, BoxLayout.Y_AXIS));
-
+		
 		label = new JLabel("Nome: ");
 		senha = new JLabel("Senha: ");
-		crm = new JLabel("Crm: ");
-		especialidade = new JLabel("Especialidade: ");
-
+		cpf = new JLabel("CPF: ");
+		idade = new JLabel("Idade: ");
+		
 		entrada = new JTextField(25);
 		entrada.setEditable(true);
-
+		
 		entradaSenha = new JPasswordField(25);
 		entradaSenha.setEditable(true);
-
-		entradaCrm = new JTextField(25);
-		entradaCrm.setEditable(true);
 		
-		entradaEspecialidade = new JTextField(25);
-		entradaEspecialidade.setEditable(true);
-
+		entradaCpf = new JTextField(11);
+		entradaCpf.setEditable(true);
+		
+		entradaIdade = new JTextField(2);
+		entradaIdade.setEditable(true);
+		
 		painelAux1 = new JPanel();
 		painelAux1.setLayout(new FlowLayout());
 		painelAux1.add(label);
 		painelAux1.add(entrada);
-
+		
 		painelAux2 = new JPanel();
 		painelAux2.setLayout(new FlowLayout());
 		painelAux2.add(senha);
 		painelAux2.add(entradaSenha);
-
+		
 		painelAux3 = new JPanel();
 		painelAux3.setLayout(new FlowLayout());
-		painelAux3.add(crm);
-		painelAux3.add(entradaCrm);
+		painelAux3.add(cpf);
+		painelAux3.add(entradaCpf);
+		painelAux3.add(idade);
+		painelAux3.add(entradaIdade);
 		
-		painelAux4 = new JPanel();
-		painelAux4.setLayout(new FlowLayout());
-		painelAux4.add(especialidade);
-		painelAux4.add(entradaEspecialidade);
-
 		painel.add(painelAux1);
 		painel.add(painelAux2);
 		painel.add(painelAux3);
-		painel.add(painelAux4);
 	}
-
+	
 	@Override
 	public void prepararBotoesCriarUsuario(Dados usuarios){
 		painelBotoes = new JPanel();
 		painelBotoes.setLayout(new FlowLayout());
-
+		
 		botao1 = new JButton("Criar");
 		botao1.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
+			  @SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				if(usuarios.usuarioExiste(entrada.getText())){
-					new JanelaErro("Já existe usuario com este nome");
-				}else{
-					try{
-						usuarios.addUsuario(entrada.getText(), new MedicoProxy(entrada.getText(),
-											entradaSenha.getText(), Long.parseLong(entradaCrm.getText()), 
-											entradaEspecialidade.getText()));
-						janela.dispose();
-					}catch(NumberFormatException e1){
-						new JanelaErro("Formato do CRM invalido");
-					}
-				}
-			}});
-
+				    if(usuarios.usuarioExiste(entrada.getText())){
+				    	new JanelaErro("Já existe usuario com este nome");
+				    }else{
+				    	try{
+				    		usuarios.addUsuario(entrada.getText(), new PacienteProxy(entrada.getText(),
+		    									entradaSenha.getText(), Long.parseLong(entradaCpf.getText()),
+		    									Integer.parseInt(entradaIdade.getText())));
+				    		janela.dispose();
+				    	}catch(NumberFormatException e1){
+				    		new JanelaErro("Formato do CPF invalido");
+				    	}
+				    }
+			  }});
+		
 		botao2 = new JButton("Cancelar");
 		botao2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				janela.dispose(); }});
-
+			  public void actionPerformed(ActionEvent e) {
+				   janela.dispose(); }});
+		
 		painelBotoes.add(botao1);
 		painelBotoes.add(botao2);
 		painel.add(painelBotoes);
 	}
 	
 	@Override
-	public void preparaTabela(Dados usuarios, String nomeMedico){
+	public void preparaTabela(Dados usuarios, String nomePaciente){
 
 		painel = new JPanel();
 		painel.setLayout(new BorderLayout());
@@ -162,13 +158,13 @@ public class JanelaMedico implements JanelaInterface{
 			new JanelaErro("Formato invalido");
 		}
 
-		tabela.setModel(usuarios.getConsultasFiltro(cal, nomeMedico));
+		tabela.setModel(usuarios.getConsultasFiltro(cal, nomePaciente));
 
 		painel.add(scroll, BorderLayout.CENTER);
 	}
 
 	@Override
-	public void prepararAtualizarTabela(Dados usuarios, String nomeMedico){
+	public void prepararAtualizarTabela(Dados usuarios, String nomePaciente){
 
 		painelAux1 = new JPanel();
 		painelAux1.setLayout(new FlowLayout());
@@ -190,7 +186,7 @@ public class JanelaMedico implements JanelaInterface{
 					SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 					Calendar cal  = Calendar.getInstance();
 					cal.setTime(df.parse(entrada.getText()));
-					tabela.setModel(usuarios.getConsultasFiltro(cal, nomeMedico));
+					tabela.setModel(usuarios.getConsultasFiltro(cal, nomePaciente));
 				} catch (ParseException e1) {
 					new JanelaErro("Formato de data invalido");
 				}   
@@ -204,25 +200,25 @@ public class JanelaMedico implements JanelaInterface{
 	}
 	
 	@Override
-	public void prepararBotoesPrincipal(Dados usuarios, String nomeMedico){
+	public void prepararBotoesPrincipal(Dados usuarios, String nomePaciente){
 		
 		painelBotoes = new JPanel();
 		painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.Y_AXIS));
 		
-		botao2 = new JButton("Concluir consulta");
+		botao2 = new JButton("Marcar consulta");
 		botao2.setMinimumSize(new Dimension(170, 50));
 		botao2.setMaximumSize(new Dimension(170, 50));
 		botao2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new JanelaConsulta().desmarcarConsulta(usuarios, null, nomeMedico);
+				new JanelaConsulta().marcarConsulta(usuarios, nomePaciente, null);
 			}});
 		
-		botao3 = new JButton("Marcar consulta");
+		botao3 = new JButton("Desmarcar Consulta");
 		botao3.setMinimumSize(new Dimension(170, 50));
 		botao3.setMaximumSize(new Dimension(170, 50));
 		botao3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new JanelaConsulta().marcarConsulta(usuarios, null, nomeMedico);
+				new JanelaConsulta().desmarcarConsulta(usuarios, nomePaciente, null);
 			}});
 		
 		botao4 = new JButton("Sair");

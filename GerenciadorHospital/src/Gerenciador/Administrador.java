@@ -1,7 +1,7 @@
 package Gerenciador;
 
-import Bridge.JanelaAdministrador;
-import Bridge.JanelaPrincipal;
+import UI.Bridge.JanelaAdministrador;
+import UI.Bridge.JanelaPrincipal;
 
 public abstract class Administrador extends Usuario{
 
